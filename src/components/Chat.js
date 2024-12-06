@@ -39,15 +39,15 @@ const Chat = () => {
             setMessage("");
         }
     };
-
-    const handleMsgChange = e =>{
-        setMessage(e.target.value)
-        if(e.key == 13){
-            if(message){
-                sendMessage()
-            }
+    const handleInputChange = (e) => {
+        setMessage(e.target.value);  // Update the message as user types
+    };
+    
+    const handleInputKeyUp = (e) => {   
+        if (e.keyCode === 13 && message.trim()) {
+            sendMessage(); // Send message on Enter key press
         }
-    }
+    };
     
     return (
         <div>
@@ -64,7 +64,7 @@ const Chat = () => {
                 </div>
             ) : (
                 <div>
-                    <h2>Chat</h2>
+                    <h2>Welcome {localStorage.getItem("chatName")}</h2>
                     <div>
                         {messages.map((msg, index) => (
                             <p key={index}>
@@ -73,16 +73,20 @@ const Chat = () => {
                         ))}
                     </div>
                     <input
+                        style={{width:"90%",maxWidth:"500px",fontSize:"17px",margin:"10px 20px", padding:"5px 10px"}}
                         type="text"
-                        value={message} 
-                        placeholder="Type a message"
-                        onKeyUp={handleMsgChange}
+                        value={message}  // Value linked to state
+                        placeholder="Type a message" 
+                        onChange={handleInputChange}  // Update state on each keystroke
+                        onKeyUp={handleInputKeyUp}   // Send message on Enter
                     />
-                    <button onClick={sendMessage}>Send</button>
+                    {/* <button onClick={sendMessage}>Send</button> */}
                 </div>
             )}
         </div>
     );
+    
+     
 };
 
 export default Chat;
