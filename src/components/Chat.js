@@ -6,7 +6,7 @@ const Chat = () => {
     const [name, setName] = useState("");
     const [message, setMessage] = useState("");
     const [messages, setMessages] = useState([]);
-    const [isNameSet, setIsNameSet] = useState(false);
+    const [isNameSet, setIsNameSet] = useState(false); 
 
     useEffect(() => {
         // Listen for incoming messages
@@ -50,7 +50,7 @@ const Chat = () => {
     };
     
     return (
-        <div>
+        <div style={{padding:"20px"}}>
             {!isNameSet ? (
                 <div>
                     <h2>Enter Your Name</h2>
@@ -64,7 +64,7 @@ const Chat = () => {
                 </div>
             ) : (
                 <div>
-                    <h2>Welcome {localStorage.getItem("chatName")}</h2>
+                    <h2> <button onClick={() => window.history.back()}>back</button> Welcome {localStorage.getItem("chatName")} <button onClick={() => localStorage.removeItem("chatName") || window.history.back()}> logout </button></h2>
                     <div>
                         {messages.map((msg, index) => (
                             <p key={index}>

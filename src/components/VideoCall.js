@@ -20,8 +20,8 @@ const VideoCall = () => {
     }, []);
 
     return (
-        <div>
-            <h2>Video Call</h2>
+        <div style={{padding:"20px"}}>
+                    <h2> <button onClick={() => window.history.back()}>back</button> Welcome {localStorage.getItem("chatName")} <button onClick={() => localStorage.removeItem("chatName") || window.history.back()}> logout </button></h2>
             <video ref={localVideoRef} autoPlay muted></video>
             <video ref={remoteVideoRef} autoPlay></video>
         </div>
