@@ -40,6 +40,15 @@ const Chat = () => {
         }
     };
 
+    const handleMsgChange = e =>{
+        setMessage(e.target.value)
+        if(e.key == 13){
+            if(message){
+                sendMessage()
+            }
+        }
+    }
+    
     return (
         <div>
             {!isNameSet ? (
@@ -65,9 +74,9 @@ const Chat = () => {
                     </div>
                     <input
                         type="text"
-                        value={message}
-                        onChange={(e) => setMessage(e.target.value)}
+                        value={message} 
                         placeholder="Type a message"
+                        onKeyUp={handleMsgChange}
                     />
                     <button onClick={sendMessage}>Send</button>
                 </div>
